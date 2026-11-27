@@ -10,13 +10,10 @@ import logoUrl from './assets/voemagic-logo.webp?inline'
 import { PixelField } from './components/ui/pixel-field'
 import { FlightQuote, type SuggestedDestination } from './components/ui/flight-quote'
 import { RouteTicket } from './components/ui/route-ticket'
+import { DestinationCarousel } from './components/ui/destination-carousel'
+import { destinations } from './travel-routes'
 import { TravelBenefits } from './components/ui/travel-benefits'
 import { whatsappUrl } from './contact'
-
-const destinations = [
-  { city: 'Madrid', country: 'Espanha', code: 'MAD', image: 'madrid', alt: 'Gran Vía e Edifício Metrópolis em Madrid' },
-  { city: 'Dublin', country: 'Irlanda', code: 'DUB', image: 'dublin', alt: 'Ha’penny Bridge sobre o rio Liffey em Dublin' },
-]
 
 const steps = [
   { icon: Compass, title: 'Conte como quer viajar', detail: 'Praia ou cidade, dias cheios ou tempo de sobra. Tudo começa com o seu jeito de viajar.' },
@@ -55,7 +52,7 @@ function App() {
               <p>Do primeiro voo à volta para casa, a VoeMagic planeja viagens do seu jeito.</p>
             </div>
 
-            <RouteTicket destinations={destinations} />
+            <RouteTicket />
 
             <div className="hero-actions">
               <a className="hero-button hero-button-primary" href="#cotacao">Cotar passagens</a>
@@ -83,15 +80,7 @@ function App() {
             <div><span className="eyebrow section-label"><MapPin size={14} /> DESTINOS</span><h2 id="destinations-title">Onde você quer <em>pousar?</em></h2></div>
             <p>Do Brasil para o mundo, encontre o destino que combina com a sua próxima viagem.</p>
           </div>
-          <div className="destination-grid">
-            {destinations.map(({ city, country, code, image, alt }) => (
-              <a key={city} className="destination" href="#cotacao" onClick={() => setSuggestedDestination({ code })} aria-label={`Cotar viagem para ${city}`}>
-                <img src={`/images/${image}.webp`} alt={alt} width="700" height="700" loading="lazy" />
-                <div className="destination-code eyebrow">{code}</div>
-                <div className="destination-caption"><div><span className="eyebrow">{country}</span><h3>{city}</h3></div><span className="destination-arrow"><ArrowUpRight size={22} /></span></div>
-              </a>
-            ))}
-          </div>
+          <DestinationCarousel destinations={destinations} onSelect={code => setSuggestedDestination({ code })} />
         </section>
 
         <TravelBenefits />
@@ -119,7 +108,7 @@ function App() {
             </nav>
             <nav className="footer-links" aria-labelledby="footer-routes">
               <h2 id="footer-routes">Rotas em destaque</h2>
-              {destinations.map(({ code, city }) => (
+              {destinations.slice(0, 2).map(({ code, city }) => (
                 <a key={code} href="#cotacao" onClick={() => setSuggestedDestination({ code, originCode: 'GRU' })}>São Paulo → {city}</a>
               ))}
             </nav>

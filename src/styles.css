@@ -166,7 +166,36 @@ h2 { margin-top: 10px; font-weight: 610; font-size: clamp(42px, 5.1vw, 73px); li
 .section-heading em { color: #805719; font-size: 1.12em; }
 .section-heading p { max-width: 299px; color: var(--muted); line-height: 1.55; font-size: 15px; }
 .destination-grid, .steps { display: grid; gap: 14px; }
-.destination-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.destination-grid {
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 28px) / 3);
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: #ad8c52 transparent;
+  padding-block: 4px 10px;
+}
+.destination-grid .destination { scroll-snap-align: start; }
+.destination-grid .destination:focus-visible { outline-offset: -4px; outline-color: #ffe1a4; }
+.destination-controls { display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 8px; }
+.destination-controls button {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  border-radius: 10px;
+  border: 1px solid #d2bd96;
+  background: #f2e4cd;
+  color: var(--petrol-deep);
+  transition: background-color 160ms ease, transform 160ms var(--out);
+}
+.destination-controls button:not(:disabled):hover { background: #e9d6b3; }
+.destination-controls button:not(:disabled):active { transform: scale(.96); }
+.destination-controls button:disabled { opacity: .42; cursor: default; }
+@media (max-width: 950px) {
+  .destination-grid { grid-auto-columns: calc((100% - 14px) / 2); }
+}
 .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .destination { position: relative; isolation: isolate; overflow: hidden; border-radius: 19px; aspect-ratio: 1.58; background: var(--petrol); color: white; }
 .destination::after { content: ''; position: absolute; inset: 0; z-index: 0; background: linear-gradient(0deg, #03282ce8, #03282c12 61%); pointer-events: none; }
@@ -227,7 +256,8 @@ h2 { margin-top: 10px; font-weight: 610; font-size: clamp(42px, 5.1vw, 73px); li
   .section, .footer-inner { width: calc(100% - 36px); }
   .section { padding-top: 60px; }
   .section-heading { display: grid; gap: 12px; }
-  .destination-grid, .steps { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .destination-grid { grid-auto-columns: min(85%, 400px); gap: 10px; }
   .destination { aspect-ratio: 1.42; }
   .steps article { padding: 20px; }
   .step-icon { margin-bottom: 16px; }
@@ -352,9 +382,10 @@ h2 { margin-top: 10px; font-weight: 610; font-size: clamp(42px, 5.1vw, 73px); li
 .ticket-top > span, .ticket-bottom > span { display: inline-flex; align-items: center; gap: 8px; }
 .signal { width: 7px; height: 7px; background: #ebc577; border-radius: 50%; box-shadow: 0 0 12px #e5ae4f; }
 .ticket-route { display: grid; grid-template-columns: 1fr minmax(36px, .85fr) 1fr; gap: 12px; align-items: center; padding: 27px 0 20px; }
+.ticket-route > div { min-width: 0; }
 .ticket-destination { text-align: right; animation: enter 230ms var(--out) both; }
 .airport { display: block; font-family: var(--mono); font-size: clamp(34px, 4vw, 46px); letter-spacing: -.07em; line-height: 1; }
-.airport-city { color: #f0dfbd; display: block; font-size: 13px; margin-top: 7px; white-space: nowrap; }
+.airport-city { color: #f0dfbd; display: block; font-size: 13px; margin-top: 7px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .flight-line { display: grid; place-items: center; position: relative; color: var(--accent); }
 .flight-line::before { content: ''; inset: 50% 0 auto; position: absolute; border-top: 1px dashed #e6c37f9e; }
 .flight-line svg { z-index: 1; background: #15484e; rotate: 45deg; }
@@ -501,3 +532,27 @@ h2 { margin-top: 10px; font-weight: 610; font-size: clamp(42px, 5.1vw, 73px); li
   .quote-layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: "form" "pass"; }
   .quote-pass { width: 100%; max-width: 540px; }
 }
+
+.route-editor {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(calc(100% - 32px), 435px);
+  max-height: calc(100dvh - 32px);
+  padding: 20px;
+  border: 1px solid #c6a56880;
+  border-radius: 18px;
+  background: var(--petrol-deep);
+  color: var(--paper);
+  box-shadow: 0 24px 70px #001e26a0;
+}
+.route-editor::backdrop { background: #001e26b3; }
+.route-editor form { display: grid; gap: 14px; }
+.route-editor-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.route-editor-header h2 { margin: 0; font-size: 30px; }
+.route-editor-header button { display: grid; place-items: center; width: 40px; height: 40px; color: #f0cb83; border-radius: 9px; }
+.route-editor-header button:hover { background: #c6a56828; }
+.route-editor label { font-size: 13px; font-weight: 650; }
+.route-editor .airport-popover { position: static; width: 100%; }
+.route-editor .airport-popover ul { max-height: 175px; }
+.route-editor .button { justify-self: start; }

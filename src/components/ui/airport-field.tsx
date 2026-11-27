@@ -14,9 +14,9 @@ export function AirportField({ label, value, onChange, airports, loadingError, o
   value: AirportValue
   onChange: (value: AirportValue) => void
   airports: Airport[] | null
-  loadingError: boolean
-  onLoad: () => void
-  invalid: boolean
+  loadingError?: boolean
+  onLoad?: () => void
+  invalid?: boolean
 }) {
   const id = useId()
   const [focused, setFocused] = useState(false)
@@ -58,7 +58,7 @@ export function AirportField({ label, value, onChange, airports, loadingError, o
           aria-activedescendant={open && matches[active] ? `${id}-${active}` : undefined} aria-required="true"
           aria-invalid={invalid} aria-describedby={invalid ? 'quote-error' : undefined} autoComplete="off"
           value={value.text} placeholder="Cidade ou aeroporto" onKeyDown={handleKey}
-          onFocus={() => { setFocused(true); onLoad() }}
+          onFocus={() => { setFocused(true); onLoad?.() }}
           onBlur={() => { setFocused(false); setActive(-1) }}
           onChange={event => { onChange({ text: event.target.value, selected: null }); setFocused(true); setActive(-1) }} />
         {value.text && <button type="button" className="field-clear" aria-label={`Limpar ${label.toLowerCase()}`}
