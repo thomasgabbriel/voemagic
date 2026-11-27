@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { ArrowLeft, ArrowRight, MessageCircle, Star } from 'lucide-react'
 import { customerReviews } from '../../customer-reviews'
+import googleMarkUrl from '../../assets/google-g.svg?inline'
 
 function Rating({ value }: { value: number }) {
   const label = value.toLocaleString('pt-BR', { maximumFractionDigits: 1 })
@@ -71,7 +72,10 @@ export function CustomerReviews() {
               {customerReviews.map(review => (
                 <li key={review.id} className="review-card">
                   <div className="review-author">
-                    <span aria-hidden="true">{review.author.trim().charAt(0).toLocaleUpperCase('pt-BR')}</span>
+                    <span className="review-avatar" aria-hidden="true">
+                      {review.author.trim().charAt(0).toLocaleUpperCase('pt-BR')}
+                      <img className="review-source-icon" src={googleMarkUrl} alt="" width="19" height="19" />
+                    </span>
                     <strong>{review.author}</strong>
                   </div>
                   <Rating value={review.rating} />
