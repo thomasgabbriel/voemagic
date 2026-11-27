@@ -79,6 +79,8 @@ function App() {
           <FlightQuote suggestedDestination={suggestedDestination} />
         </section>
 
+        <CustomerReviews />
+
         <section id="destinos" className="section destinations" aria-labelledby="destinations-title">
           <div className="section-heading">
             <div><span className="eyebrow section-label"><MapPin size={14} /> DESTINOS</span><h2 id="destinations-title">Onde você quer <em>pousar?</em></h2></div>
@@ -96,7 +98,6 @@ function App() {
           </div>
         </section>
 
-        <CustomerReviews />
       </main>
       <footer className="footer">
         <div className="footer-inner">
