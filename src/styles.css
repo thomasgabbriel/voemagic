@@ -630,13 +630,14 @@ h2 { margin-top: 10px; font-weight: 610; font-size: clamp(42px, 5.1vw, 73px); li
 .review-card:nth-child(even) .review-avatar { background: #e9d6b3; color: #704614; }
 .review-source-icon {
   position: absolute;
-  right: -3px;
-  bottom: -3px;
-  box-sizing: content-box;
-  padding: 1px;
+  right: -5px;
+  bottom: -4px;
+  width: 21px;
+  height: 21px;
   border: 2px solid #fff;
   border-radius: 50%;
   background: #fff;
+  pointer-events: none;
 }
 .review-card blockquote { color: #203535; margin: 0; font-size: 14px; line-height: 1.55; }
 .review-carousel { position: relative; }
