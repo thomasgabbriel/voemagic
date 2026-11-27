@@ -35,6 +35,7 @@ function App() {
       <main id="inicio">
         <section className="hero" aria-labelledby="hero-title">
           <PixelField />
+          <div className="hero-scenes" aria-hidden="true" />
           <header className="header">
             <Brand />
             <button type="button" className="menu-toggle" aria-expanded={menuOpen} aria-controls="menu" aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X size={22} /> : <Menu size={22} />}</button>
