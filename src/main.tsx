@@ -10,6 +10,7 @@ import logoUrl from './assets/voemagic-logo.webp?inline'
 import { PixelField } from './components/ui/pixel-field'
 import { FlightQuote, type SuggestedDestination } from './components/ui/flight-quote'
 import { RouteTicket } from './components/ui/route-ticket'
+import { HeroPostcards } from './components/ui/hero-postcards'
 import { DestinationCarousel } from './components/ui/destination-carousel'
 import { destinations } from './travel-routes'
 import { TravelBenefits } from './components/ui/travel-benefits'
@@ -60,17 +61,7 @@ function App() {
             </div>
           </div>
 
-          <div className="hero-scenes">
-            {destinations.slice(0, 2).map(({ code, city, country }) => (
-              <a key={code} className="hero-scene" href="#cotacao" aria-label={`Cotar voo para ${city}`}
-                onClick={() => setSuggestedDestination({ code, originCode: 'GRU' })}>
-                <span className="hero-scene-caption">
-                  <span><span className="eyebrow">{country}</span><strong>{city}</strong></span>
-                  <span className="hero-scene-arrow"><ArrowUpRight size={17} aria-hidden="true" /></span>
-                </span>
-              </a>
-            ))}
-          </div>
+          <HeroPostcards />
 
           <div className="shelf">
             <span><Plane size={16} /> Voos</span>
