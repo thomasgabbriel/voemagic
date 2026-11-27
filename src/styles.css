@@ -44,28 +44,69 @@ em { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-s
 }
 .hero-scenes { display: none; }
 @media (min-width: 1100px) {
-  .hero-scenes { display: block; position: absolute; inset: 0; z-index: -1; pointer-events: none; }
-  .hero-scenes::before, .hero-scenes::after {
-    content: '';
+  .hero-scenes { display: block; position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .hero-scene {
+    --scene-tilt: -5deg;
+    --scene-offset: 11px;
     position: absolute;
-    top: 50%;
-    width: clamp(215px, 20vw, 325px);
-    aspect-ratio: 1.21;
-    border: 1px solid #f0cb8345;
-    border-radius: 17px;
-    background-position: center;
-    background-size: cover;
-    box-shadow: 0 20px 40px -18px #001f25db;
-  }
-  .hero-scenes::before {
+    top: 48%;
     left: clamp(36px, 5vw, 88px);
-    transform: translateY(-44%);
-    background-image: linear-gradient(150deg, #07323912, #07323953 68%, #073239ae), url('/images/madrid.webp');
+    width: clamp(218px, 21vw, 328px);
+    aspect-ratio: 1.09;
+    display: flex;
+    align-items: flex-end;
+    isolation: isolate;
+    padding: clamp(12px, 1.4vw, 20px);
+    border: 1px solid #e1ba757d;
+    border-radius: 21px;
+    background: #143e43;
+    color: #fffaf1;
+    box-shadow: 0 26px 46px -18px #001a20e0;
+    transform: translateY(-39%) rotate(var(--scene-tilt));
+    transition: transform 260ms var(--out), box-shadow 220ms ease;
+    pointer-events: auto;
   }
-  .hero-scenes::after {
-    right: clamp(36px, 5vw, 88px);
-    transform: translateY(-29%);
-    background-image: linear-gradient(210deg, #0732390f, #0732394d 68%, #073239a0), url('/images/dublin.webp');
+  .hero-scene:last-child {
+    --scene-tilt: 5deg;
+    --scene-offset: -11px;
+    inset: 53% clamp(36px, 5vw, 88px) auto auto;
+  }
+  .hero-scene::before, .hero-scene::after { content: ''; position: absolute; pointer-events: none; }
+  .hero-scene::before {
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: linear-gradient(180deg, #07323906 37%, #061e23db 96%), url('/images/madrid.webp') center 41% / cover;
+  }
+  .hero-scene:last-child::before {
+    background: linear-gradient(180deg, #07323906 37%, #061e23db 96%), url('/images/dublin.webp') center 49% / cover;
+  }
+  .hero-scene::after {
+    inset: 0;
+    z-index: -2;
+    border: 1px solid #e1ba7552;
+    border-top-color: transparent;
+    border-radius: inherit;
+    transform: translate(var(--scene-offset), 10px);
+  }
+  .hero-scene:is(:hover, :focus-visible) {
+    transform: translateY(-41%) rotate(0);
+    box-shadow: 0 30px 50px -18px #001a20f2;
+    outline-color: #f0cb83;
+  }
+  .hero-scene-caption { width: 100%; display: flex; justify-content: space-between; align-items: end; gap: 9px; }
+  .hero-scene-caption .eyebrow { display: block; color: #f0cb83; }
+  .hero-scene-caption strong { display: block; font: italic 400 clamp(30px, 3vw, 49px)/.94 'Instrument Serif', Georgia, serif; }
+  .hero-scene-arrow {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    color: #ffe3a9;
+    border: 1px solid #e1ba7594;
+    border-radius: 50%;
+    background: #093138bd;
   }
 }
 .header {

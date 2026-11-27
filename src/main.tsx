@@ -35,7 +35,6 @@ function App() {
       <main id="inicio">
         <section className="hero" aria-labelledby="hero-title">
           <PixelField />
-          <div className="hero-scenes" aria-hidden="true" />
           <header className="header">
             <Brand />
             <button type="button" className="menu-toggle" aria-expanded={menuOpen} aria-controls="menu" aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X size={22} /> : <Menu size={22} />}</button>
@@ -59,6 +58,18 @@ function App() {
               <a className="hero-button hero-button-primary" href="#cotacao">Cotar passagens</a>
               <a className="hero-button hero-button-secondary" href="#destinos">Explorar destinos</a>
             </div>
+          </div>
+
+          <div className="hero-scenes">
+            {destinations.slice(0, 2).map(({ code, city, country }) => (
+              <a key={code} className="hero-scene" href="#cotacao" aria-label={`Cotar voo para ${city}`}
+                onClick={() => setSuggestedDestination({ code, originCode: 'GRU' })}>
+                <span className="hero-scene-caption">
+                  <span><span className="eyebrow">{country}</span><strong>{city}</strong></span>
+                  <span className="hero-scene-arrow"><ArrowUpRight size={17} aria-hidden="true" /></span>
+                </span>
+              </a>
+            ))}
           </div>
 
           <div className="shelf">
