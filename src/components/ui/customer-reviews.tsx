@@ -45,9 +45,7 @@ export function CustomerReviews() {
 
   return (
     <section id="avaliacoes" className="section customer-reviews" aria-labelledby="reviews-title">
-      <div className="section-heading">
-        <h2 id="reviews-title">O que nossos <em>clientes dizem</em></h2>
-      </div>
+      <h2 id="reviews-title" className="sr-only">Avaliações da VoeMagic</h2>
 
       {count === 0 ? (
         <div className="review-empty">
@@ -57,6 +55,7 @@ export function CustomerReviews() {
       ) : (
         <div className="review-panel">
           <div className="review-summary">
+            <span className="review-brand">Voe<span>Magic</span></span>
             <strong>{average.toLocaleString('pt-BR', { maximumFractionDigits: 1, minimumFractionDigits: 1 })}</strong>
             <Rating value={average} />
             <span>({count} {count === 1 ? 'avaliação' : 'avaliações'})</span>
