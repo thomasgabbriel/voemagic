@@ -124,6 +124,7 @@ function App() {
               <h2>Fale com a VoeMagic</h2>
               <a className="footer-whatsapp" href={whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageCircle size={16} aria-hidden="true" /> Atendimento no WhatsApp <ArrowUpRight size={15} aria-hidden="true" /></a>
               <a href="#cotacao">Solicitar cotação</a>
+              <a href="mailto:contato@voemagic.com">contato@voemagic.com</a>
             </div>
           </div>
           <div className="footer-bottom">
