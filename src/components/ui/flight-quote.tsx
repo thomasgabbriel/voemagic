@@ -1,5 +1,5 @@
 import { useEffect, useState, type FormEvent } from 'react'
-import { ArrowLeftRight, ArrowUpRight, Minus, Plus } from 'lucide-react'
+import { ArrowLeftRight, ArrowUpRight, ChevronDown, Minus, Plus } from 'lucide-react'
 import { AirportField, emptyAirport, type AirportValue } from './airport-field'
 import { airportLabel, loadAirports, type Airport } from './airports'
 import { whatsappUrl } from '../../contact'
@@ -120,6 +120,15 @@ export function FlightQuote({ suggestedDestination }: { suggestedDestination: Su
     'aria-describedby': error?.field === name ? 'quote-error' : undefined,
   })
 
+  const boardingPass = (
+    <QuoteBoardingPass activeField={activeField} origin={origin.selected} destination={destination.selected} roundTrip={roundTrip}
+        departure={formatDate(departure)} returnDate={formatDate(returnDate)} flexible={flexible} passengers={passengers}
+        preferences={[
+          ...(purpose ? [{ label: 'Objetivo', value: purpose }] : []),
+          ...questions.filter(({ name }) => answers[name]).map(({ name, summary }) => ({ label: summary, value: answers[name] })),
+        ]} />
+  )
+
   return (
     <div className="quote-layout">
       <form id="cotacao" className="quote" aria-labelledby="quote-title" noValidate onSubmit={submit} onChange={() => setError(null)}
@@ -160,6 +169,10 @@ export function FlightQuote({ suggestedDestination }: { suggestedDestination: Su
           </fieldset>
         </div>
         {purpose && <p className="quote-purpose-note" role="status">Para {purpose === 'Imigrar' ? 'imigração' : 'intercâmbio'}, a cotação será somente ida.</p>}
+        <details className="quote-mobile-pass">
+          <summary>Ver bilhete <ChevronDown size={17} aria-hidden="true" /></summary>
+          {boardingPass}
+        </details>
         <div className="quote-passengers" data-pass-field="passengers">
           <div><strong id="passenger-label">Passageiros</strong><small>Inclua as crianças no total.</small></div>
           <div className="counter" role="group" aria-labelledby="passenger-label">
@@ -179,12 +192,7 @@ export function FlightQuote({ suggestedDestination }: { suggestedDestination: Su
         {error && <p id="quote-error" className="quote-error" role="alert">{error.message}</p>}
         <button className="button primary quote-submit" type="submit">Solicitar cotação <ArrowUpRight size={18} /></button>
       </form>
-      <QuoteBoardingPass activeField={activeField} origin={origin.selected} destination={destination.selected} roundTrip={roundTrip}
-        departure={formatDate(departure)} returnDate={formatDate(returnDate)} flexible={flexible} passengers={passengers}
-        preferences={[
-          ...(purpose ? [{ label: 'Objetivo', value: purpose }] : []),
-          ...questions.filter(({ name }) => answers[name]).map(({ name, summary }) => ({ label: summary, value: answers[name] })),
-        ]} />
+      {boardingPass}
     </div>
   )
 }
