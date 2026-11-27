@@ -5,7 +5,9 @@ export interface CustomerReview {
   comment: string
 }
 
-// Cadastre apenas depoimentos reais autorizados para publicação.
+export const totalCustomerReviews = 22
+
+// Depoimentos selecionados para exibição no site.
 export const customerReviews: CustomerReview[] = [
   { id: 'review-1', author: 'Luciene P.', rating: 5, comment: 'Muito rápido!' },
   { id: 'review-2', author: 'Rafael N.', rating: 5, comment: 'Recomendo! O serviço foi excelente.' },

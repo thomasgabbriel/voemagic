@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { ArrowLeft, ArrowRight, MessageCircle, Star } from 'lucide-react'
-import { customerReviews } from '../../customer-reviews'
+import { customerReviews, totalCustomerReviews } from '../../customer-reviews'
 import googleMarkUrl from '../../assets/google-g.svg?inline'
 
 function Rating({ value }: { value: number }) {
@@ -59,7 +59,7 @@ export function CustomerReviews() {
             <span className="review-brand">Voe<span>Magic</span></span>
             <strong>{average.toLocaleString('pt-BR', { maximumFractionDigits: 1, minimumFractionDigits: 1 })}</strong>
             <Rating value={average} />
-            <span>({count} {count === 1 ? 'avaliação' : 'avaliações'})</span>
+            <span>({totalCustomerReviews} avaliações)</span>
           </div>
           <div className="review-carousel">
             {(!edges.start || !edges.end) && (
