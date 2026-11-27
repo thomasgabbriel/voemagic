@@ -130,7 +130,7 @@ export function FlightQuote({ suggestedDestination }: { suggestedDestination: Su
         onBlur={event => {
           if (!event.currentTarget.contains(event.relatedTarget)) setActiveField(null)
         }}>
-        <h2 id="quote-title">Cotar passagens</h2>
+        <h2 id="quote-title">Cotar <em>passagens</em></h2>
         <fieldset className="quote-trip" data-pass-field="type">
           <legend className="sr-only">Tipo de viagem</legend>
           <label><input type="radio" name="tipo" checked={roundTrip} disabled={purpose !== null} onChange={() => setWantsRoundTrip(true)} /> Ida e volta</label>

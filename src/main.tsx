@@ -4,6 +4,7 @@ import { ArrowUp, ArrowUpRight, Compass, Headphones, MapPin, Menu, MessageCircle
 import '@fontsource-variable/manrope'
 import '@fontsource-variable/inter-tight'
 import '@fontsource-variable/geist-mono'
+import '@fontsource/instrument-serif/latin-400.css'
 import '@fontsource/instrument-serif/latin-400-italic.css'
 import './styles.css'
 import logoUrl from './assets/voemagic-logo.webp?inline'

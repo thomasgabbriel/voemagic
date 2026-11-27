@@ -339,8 +339,15 @@ h2 { margin-top: 10px; font-weight: 610; font-size: clamp(42px, 5.1vw, 73px); li
   gap: 16px;
   min-width: 0;
 }
-.quote h2 { margin: 0; font-size: clamp(27px, 3vw, 39px); letter-spacing: -.045em; }
-.quote label, .quote legend, .quote-passengers strong { font-size: 13px; font-weight: 630; }
+.quote, .quote-pass { font-family: 'Inter Tight Variable', sans-serif; }
+.quote h2 {
+  margin: 0;
+  font: 400 clamp(37px, 4.15vw, 62px)/.98 'Instrument Serif', Georgia, serif;
+  letter-spacing: -.025em;
+}
+.quote h2 em { color: #f0cb83; letter-spacing: inherit; }
+.quote label, .quote legend, .quote-passengers strong { font-size: 14px; font-weight: 570; letter-spacing: .008em; }
+.quote .airport-input input, .quote input[type=date] { font-weight: 500; letter-spacing: .01em; }
 .quote input:is([type=radio], [type=checkbox]) { flex: none; width: 16px; height: 16px; accent-color: #e2bc76; }
 .quote-trip, .quote-flex, .quote-trip label, .quote-questions label { display: flex; align-items: center; gap: 7px; }
 .quote-trip { gap: 16px; flex-wrap: wrap; }
@@ -406,7 +413,7 @@ h2 { margin-top: 10px; font-weight: 610; font-size: clamp(42px, 5.1vw, 73px); li
 .quote-purpose label:has(input:checked) { background: #c6a56832; border-color: #e2bc76; color: #ffe1a4; }
 .quote-purpose-note { color: #f0cb83; font-size: 12px; }
 .quote-passengers { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 0; border-block: 1px solid #c6a56855; }
-.quote-passengers small { display: block; font-size: 11px; color: #e4dbc7; }
+.quote-passengers small { display: block; font-size: 12px; margin-top: 2px; color: #e4dbc7; }
 .counter { display: flex; align-items: center; gap: 7px; }
 .counter button { width: 35px; height: 35px; border: 1px solid #bda271a6; }
 .counter button:disabled { opacity: .42; cursor: default; }
@@ -415,9 +422,17 @@ h2 { margin-top: 10px; font-weight: 610; font-size: clamp(42px, 5.1vw, 73px); li
 .quote-questions fieldset { min-width: 0; }
 .quote-questions legend { padding-bottom: 3px; }
 .quote-questions fieldset > div { display: flex; flex-wrap: wrap; gap: 0 9px; }
-.quote-questions label { font-size: 12px; gap: 4px; }
+.quote-questions label { font-size: 13px; font-weight: 500; gap: 4px; }
 .quote-error { color: #ffd0a6; font-size: 13px; }
-.quote-submit { width: 100%; border-radius: 10px; background: #e2bc76; color: var(--petrol-deep); }
+.quote-submit {
+  width: 100%;
+  border-radius: 10px;
+  background: #e2bc76;
+  color: var(--petrol-deep);
+  font: 550 12px/1.25 var(--mono);
+  letter-spacing: .075em;
+  text-transform: uppercase;
+}
 .quote-submit:hover { background: #f0cb83; }
 @media (min-width: 741px) and (max-width: 1050px) {
   .quote-questions { grid-template-columns: 1fr 1fr; }
@@ -559,19 +574,19 @@ h2 { margin-top: 10px; font-weight: 610; font-size: clamp(42px, 5.1vw, 73px); li
 .quote-pass-header { display: flex; justify-content: flex-end; padding: 18px 20px 4px; }
 .quote-pass-type { border: 1px solid #c6a56880; border-radius: 100px; padding: 4px 9px; color: #ffe1a4; font-size: 11px; }
 .quote-pass-body { padding: 16px 20px 17px; }
-.quote-pass dt { color: #e4dbc7; font-size: 11px; font-weight: 680; }
+.quote-pass dt { color: #f0cb83; font: 500 10px/1.35 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
 .quote-pass dd { margin: 0; }
 .quote-pass-route { position: relative; padding: 8px 6px; border-radius: 10px; }
 .quote-pass-route dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 25%; }
 .quote-pass-route dl > div:last-child { text-align: right; }
-.quote-pass-route strong { display: block; font: 600 clamp(28px, 4vw, 53px)/1.13 var(--mono); letter-spacing: -.075em; overflow-wrap: anywhere; animation: enter 200ms var(--out) both; }
-.quote-pass-route dd span { display: block; color: #e4dbc7; font-size: 12px; overflow-wrap: anywhere; }
+.quote-pass-route strong { display: block; font: 500 clamp(29px, 4.2vw, 56px)/1.08 var(--mono); letter-spacing: -.06em; overflow-wrap: anywhere; animation: enter 200ms var(--out) both; }
+.quote-pass-route dd span { display: block; color: #e4dbc7; font-size: 13px; overflow-wrap: anywhere; }
 .quote-pass-track { position: absolute; inset: 40% 40% auto; display: grid; place-items: center; color: #f0cb83; }
 .quote-pass-track::before { content: ''; position: absolute; inset: 50% 0 auto; border-top: 1px dashed #c6a568; }
 .quote-pass-track svg { position: relative; background: #124c53; }
 .quote-pass-details { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; padding-top: 10px; margin-top: 6px; border-top: 1px solid #c6a5684d; }
 .quote-pass-details > div { padding: 5px 7px; border-radius: 8px; }
-.quote-pass-details dd { font-size: 13px; font-weight: 750; margin-top: 4px; }
+.quote-pass-details dd { font-size: 15px; font-weight: 570; font-variant-numeric: tabular-nums; margin-top: 5px; }
 .quote-pass-preferences { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 7px; padding: 4px 6px; border-radius: 8px; }
 .quote-pass-preferences li { padding: 3px 7px; border-radius: 100px; background: #f4ebdd1c; color: #f8ecd1; font-size: 10px; font-weight: 650; }
 .quote-pass-preferences .quote-pass-empty { background: transparent; padding-inline: 0; }
