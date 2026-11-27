@@ -406,6 +406,23 @@ em { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-s
 .airport-popover p { padding: 10px 12px; font-size: 13px; }
 .quote input[type=date] { width: 100%; min-width: 0; padding: 6px 9px; color-scheme: dark; font-size: 14px; }
 .quote input[type=date]:disabled { opacity: .54; cursor: not-allowed; }
+@media (max-width: 740px) {
+  .quote-dates { gap: 10px; }
+  .quote-dates label { grid-template-columns: minmax(0, 1fr); }
+  .quote-dates input[type=date] {
+    display: block;
+    max-inline-size: 100%;
+    min-block-size: 44px;
+    margin: 0;
+    padding: 4px 6px;
+  }
+  .quote-dates input[type=date]::-webkit-date-and-time-value {
+    min-inline-size: 0;
+    margin: 0;
+    text-align: start;
+  }
+  .quote-dates input[type=date]::-webkit-datetime-edit { padding: 0; }
+}
 .quote-trip label:has(input:disabled) { opacity: .65; }
 .quote-options, .quote-purpose, .quote-purpose label { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
 .quote-options { gap: 8px 14px; }

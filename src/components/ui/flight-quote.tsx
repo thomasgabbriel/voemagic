@@ -5,7 +5,7 @@ import { airportLabel, loadAirports, type Airport } from './airports'
 import { whatsappUrl } from '../../contact'
 import { QuoteBoardingPass, type QuotePassField } from './quote-boarding-pass'
 
-const purposes = ['Imigrar', 'Intercâmbio'] as const
+const purposes = ['Imigrar', 'Intercâmbio', 'Passeio'] as const
 type TravelPurpose = typeof purposes[number]
 
 const yesNo = ['Sim', 'Não']
@@ -39,7 +39,8 @@ export function FlightQuote({ suggestedDestination }: { suggestedDestination: Su
   const [destination, setDestination] = useState<AirportValue>(emptyAirport)
   const [wantsRoundTrip, setWantsRoundTrip] = useState(true)
   const [purpose, setPurpose] = useState<TravelPurpose | null>(null)
-  const roundTrip = wantsRoundTrip && !purpose
+  const requiresOneWay = purpose === 'Imigrar' || purpose === 'Intercâmbio'
+  const roundTrip = wantsRoundTrip && !requiresOneWay
   const [departure, setDeparture] = useState('')
   const [returnDate, setReturnDate] = useState('')
   const [flexible, setFlexible] = useState(false)
@@ -133,7 +134,7 @@ export function FlightQuote({ suggestedDestination }: { suggestedDestination: Su
         <h2 id="quote-title">Cotar <em>passagens</em></h2>
         <fieldset className="quote-trip" data-pass-field="type">
           <legend className="sr-only">Tipo de viagem</legend>
-          <label><input type="radio" name="tipo" checked={roundTrip} disabled={purpose !== null} onChange={() => setWantsRoundTrip(true)} /> Ida e volta</label>
+          <label><input type="radio" name="tipo" checked={roundTrip} disabled={requiresOneWay} onChange={() => setWantsRoundTrip(true)} /> Ida e volta</label>
           <label><input type="radio" name="tipo" checked={!roundTrip} onChange={() => setWantsRoundTrip(false)} /> Somente ida</label>
         </fieldset>
         <div className="quote-route" data-pass-field="route">
@@ -145,7 +146,7 @@ export function FlightQuote({ suggestedDestination }: { suggestedDestination: Su
         </div>
         <div className="quote-dates">
           <label data-pass-field="departure">Data de ida<input type="date" name="ida" min={today} value={departure} required={!flexible} {...dateError('ida')} onChange={event => setDeparture(event.target.value)} /></label>
-          {(roundTrip || purpose) && <label data-pass-field="return">Data de volta<input type="date" name="volta" min={departure > today ? departure : today}
+          {(roundTrip || requiresOneWay) && <label data-pass-field="return">Data de volta<input type="date" name="volta" min={departure > today ? departure : today}
             value={roundTrip ? returnDate : ''} disabled={!roundTrip} required={roundTrip && !flexible}
             {...dateError('volta')} onChange={event => setReturnDate(event.target.value)} /></label>}
         </div>
@@ -159,7 +160,7 @@ export function FlightQuote({ suggestedDestination }: { suggestedDestination: Su
             ))}
           </fieldset>
         </div>
-        {purpose && <p className="quote-purpose-note" role="status">Para {purpose === 'Imigrar' ? 'imigração' : 'intercâmbio'}, a cotação será somente ida.</p>}
+        {requiresOneWay && <p className="quote-purpose-note" role="status">Para {purpose === 'Imigrar' ? 'imigração' : 'intercâmbio'}, a cotação será somente ida.</p>}
         <div className="quote-passengers" data-pass-field="passengers">
           <div><strong id="passenger-label">Passageiros</strong><small>Inclua as crianças no total.</small></div>
           <div className="counter" role="group" aria-labelledby="passenger-label">
