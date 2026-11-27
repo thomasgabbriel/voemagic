@@ -47,13 +47,6 @@ export function CustomerReviews() {
     <section id="avaliacoes" className="section customer-reviews" aria-labelledby="reviews-title">
       <div className="section-heading">
         <h2 id="reviews-title">O que nossos <em>clientes dizem</em></h2>
-        {count > 0 && (
-          <div className="review-summary">
-            <strong>{average.toLocaleString('pt-BR', { maximumFractionDigits: 1, minimumFractionDigits: 1 })}</strong>
-            <Rating value={average} />
-            <span>{count} {count === 1 ? 'avaliação' : 'avaliações'}</span>
-          </div>
-        )}
       </div>
 
       {count === 0 ? (
@@ -62,24 +55,33 @@ export function CustomerReviews() {
           <p>Ainda não há avaliações publicadas aqui.</p>
         </div>
       ) : (
-        <>
-          {(!edges.start || !edges.end) && <div className="destination-controls">
-            <button type="button" disabled={edges.start} onClick={() => scrollReviews(-1)} aria-controls="review-track" aria-label="Avaliações anteriores"><ArrowLeft size={18} aria-hidden="true" /></button>
-            <button type="button" disabled={edges.end} onClick={() => scrollReviews(1)} aria-controls="review-track" aria-label="Próximas avaliações"><ArrowRight size={18} aria-hidden="true" /></button>
-          </div>}
-          <ul id="review-track" className="review-track" ref={track} onScroll={updateEdges}>
-            {customerReviews.map(review => (
-              <li key={review.id} className="review-card">
-                <div className="review-author">
-                  <span aria-hidden="true">{review.author.trim().charAt(0).toLocaleUpperCase('pt-BR')}</span>
-                  <strong>{review.author}</strong>
-                </div>
-                <Rating value={review.rating} />
-                <blockquote>{review.comment}</blockquote>
-              </li>
-            ))}
-          </ul>
-        </>
+        <div className="review-panel">
+          <div className="review-summary">
+            <strong>{average.toLocaleString('pt-BR', { maximumFractionDigits: 1, minimumFractionDigits: 1 })}</strong>
+            <Rating value={average} />
+            <span>({count} {count === 1 ? 'avaliação' : 'avaliações'})</span>
+          </div>
+          <div className="review-carousel">
+            {(!edges.start || !edges.end) && (
+              <div className="review-controls">
+                <button type="button" disabled={edges.start} onClick={() => scrollReviews(-1)} aria-controls="review-track" aria-label="Avaliações anteriores"><ArrowLeft size={17} aria-hidden="true" /></button>
+                <button type="button" disabled={edges.end} onClick={() => scrollReviews(1)} aria-controls="review-track" aria-label="Próximas avaliações"><ArrowRight size={17} aria-hidden="true" /></button>
+              </div>
+            )}
+            <ul id="review-track" className="review-track" ref={track} onScroll={updateEdges}>
+              {customerReviews.map(review => (
+                <li key={review.id} className="review-card">
+                  <div className="review-author">
+                    <span aria-hidden="true">{review.author.trim().charAt(0).toLocaleUpperCase('pt-BR')}</span>
+                    <strong>{review.author}</strong>
+                  </div>
+                  <Rating value={review.rating} />
+                  <blockquote>{review.comment}</blockquote>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       )}
     </section>
   )
