@@ -14,6 +14,7 @@ import { HeroPostcards } from './components/ui/hero-postcards'
 import { DestinationCarousel } from './components/ui/destination-carousel'
 import { destinations } from './travel-routes'
 import { TravelBenefits } from './components/ui/travel-benefits'
+import { CustomerReviews } from './components/ui/customer-reviews'
 import { whatsappUrl } from './contact'
 
 const steps = [
@@ -95,6 +96,7 @@ function App() {
           </div>
         </section>
 
+        <CustomerReviews />
       </main>
       <footer className="footer">
         <div className="footer-inner">
@@ -108,6 +110,7 @@ function App() {
               <a href="#destinos">Destinos</a>
               <a href="#por-que-voemagic">Por que VoeMagic</a>
               <a href="#como-funciona">Como funciona</a>
+              <a href="#avaliacoes">Avaliações</a>
             </nav>
             <nav className="footer-links" aria-labelledby="footer-routes">
               <h2 id="footer-routes">Rotas em destaque</h2>
