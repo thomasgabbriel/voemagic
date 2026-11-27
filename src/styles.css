@@ -44,16 +44,6 @@ em { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-s
 }
 .hero-scenes { display: none; }
 @media (min-width: 1100px) {
-  .hero {
-    background:
-      linear-gradient(90deg, #073239c7, #0732398c 44%, #07323924 77%),
-      url('/images/hero-wing.webp') center 52% / cover no-repeat,
-      var(--petrol-deep);
-  }
-  .hero::before {
-    background: linear-gradient(180deg, #06282e9c, #06282e36 38%, transparent 57%, #06282eb5);
-  }
-  .hero .pixel-field { opacity: .3; }
   .hero-scenes { display: block; position: absolute; inset: 0; z-index: 0; pointer-events: none; }
   .hero-scene {
     --scene-tilt: -5deg;
