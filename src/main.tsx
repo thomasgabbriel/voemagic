@@ -52,7 +52,7 @@ function App() {
           <div className="hero-body">
             <div className="hero-copy">
               <h1 id="hero-title"><span>O mundo te espera. <em>Voe.</em></span></h1>
-              <p>Do primeiro voo à volta para casa, a VoeMagic planeja viagens do seu jeito.</p>
+              <p>Da escolha da passagem ao embarque, a VoeMagic cuida dos detalhes para você viajar com tranquilidade.</p>
             </div>
 
             <RouteTicket />
