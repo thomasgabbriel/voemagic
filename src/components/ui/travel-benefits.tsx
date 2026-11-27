@@ -11,8 +11,8 @@ const benefits = [
   },
   {
     id: 'europa', label: 'Destinos na Europa', icon: Globe2, image: 'madrid',
-    title: 'De São Paulo a Madrid ou Dublin.',
-    description: 'Comece por um dos nossos destinos em destaque e planeje o embarque de acordo com seus planos na Europa.',
+    title: 'Do Brasil para o mundo, voe rumo ao seu sonho.',
+    description: 'De uma viagem de férias a um novo começo no exterior, a VoeMagic ajuda você a encontrar o voo certo e a planejar o embarque.',
     action: 'Ver os destinos', href: '#destinos',
   },
   {
