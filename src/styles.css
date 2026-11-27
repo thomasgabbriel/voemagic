@@ -416,6 +416,9 @@ em { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-s
     margin: 0;
     padding: 4px 6px;
   }
+  .quote-dates label:not(:only-child) input[type=date] {
+    inline-size: calc(100% - 10px);
+  }
   .quote-dates input[type=date]::-webkit-date-and-time-value {
     min-inline-size: 0;
     margin: 0;
